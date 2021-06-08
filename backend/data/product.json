@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Tapitio Hot Sauce - 10 oz",
+        "price": 4.99,
+        "description": "Tapatio pronounced [Tah-pah-tee-o] is a Mexican hot sauce that is well known for its wild and mild flavor. This flavorful condiment has mild heat and is perfect for improving the taste and adding a touch of flavor to almost any dish without stinging or numbing your tongue.",
+        "rating": 4.1,
+        "images": [
+            {
+                "id": "djlwiegh464",
+                "public_id": "sauces/tapitio",
+                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1623183604/sauces/tapatio.jpg"
+            }
+        ],
+        "category": "Hot Sauce",
+        "heat": "Medium",
+        "seller": "theDino",
+        "stock": 14
+        
+    }
+]
