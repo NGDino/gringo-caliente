@@ -21,13 +21,20 @@ exports.getProducts = async (req, res, next)=>{
         products
     })
 }
+//get product by id
+exports.getSingleProduct = async (req, res, next) => {
 
-// exports.getProduct = async (req, res, next)=>{
-//     const product = await Product.find({params: _id})
+    const product = await Product.findById(req.params.id);
 
-//     res.status(200).json({
-//         success: true,
-//         count: products.length,
-//         products
-//     })
-// }
+    if(!product){
+        return res.status(505).json({
+            success: false,
+            message: 'That one is too hot, cannot find'
+        })
+    }
+
+    res.status(200).json({
+        success: true,
+        product
+    })
+}
