@@ -12,9 +12,22 @@ exports.newProduct = async (req, res, next) => {
 }
 
 
-exports.getProducts = (req, res, next)=>{
+exports.getProducts = async (req, res, next)=>{
+    const products = await Product.find()
+
     res.status(200).json({
         success: true,
-        message: 'this route will show all products'
+        count: products.length,
+        products
     })
 }
+
+// exports.getProduct = async (req, res, next)=>{
+//     const product = await Product.find({params: _id})
+
+//     res.status(200).json({
+//         success: true,
+//         count: products.length,
+//         products
+//     })
+// }
