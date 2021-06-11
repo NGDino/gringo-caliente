@@ -1,4 +1,5 @@
 const Product = require('../models/Product');
+const ErrorHandler = require('../utils/errorHandler')
 
 //Create new product =>  /api/v1/product/new
 exports.newProduct = async (req, res, next) => {
@@ -23,32 +24,24 @@ exports.getProducts = async (req, res, next)=>{
 }
 //get product by id
 exports.getSingleProduct = async (req, res, next) => {
-
-    const product = await Product.findById(req.params.id);
-
-    if(!product){
-        return res.status(505).json({
-            success: false,
-            message: 'That one is too hot, cannot find'
+    try {
+        const product = await Product.findById(req.params.id);
+        res.status(200).json({
+            success: true,
+            product
         })
+    }catch{
+        return next(new ErrorHandler('product not found'))
     }
 
-    res.status(200).json({
-        success: true,
-        product
-    })
+    
+
 }
 
 //update product
 exports.updateProduct = async (req, res, next) => {
+    try {
     let product = await Product.findById(req.params.id);
-
-    if(!product){
-        return res.status(404).json({
-            success: false,
-            message: 'Product not found'
-        })
-    }
 
     product = await Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
@@ -60,24 +53,25 @@ exports.updateProduct = async (req, res, next) => {
         success: true,
         product
     })
+
+    }catch{
+            return next(new ErrorHandler('product not found'))
+    }
+    
 }
 
 //delete product
 exports.deleteProduct = async (req, res, next) => {
-    const product = await Product.findById(req.params.id);
+    try{
+        const product = await Product.findById(req.params.id);
 
-    
-    if(!product){
-        return res.status(404).json({
-            success: false,
-            message: 'Product not found'
+        await product.remove();
+        res.status(200).json({
+            success: true,
+            message: 'product deleted'
         })
+    }catch{
+        return next(new ErrorHandler('product not found'))
     }
-
-    await product.remove();
-    res.status(200).json({
-        success: true,
-        message: 'product deleted'
-    })
 
 }
