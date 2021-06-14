@@ -37,7 +37,16 @@ module.exports = (err, req, res, next) => {
         if(err.code === 11000){
             const message = `Duplicate ${Object.keys(err.keyValue)} entered`
             error= new ErrorHandler(message, 400)
-
+        }
+        //handle wrong jwt value
+        if(err.name === 'JsonWebTokenError'){
+            const message = 'JSON web token is invalid. Try Again'
+            error = new ErrorHandler(message, 400)
+        }
+           //handle expired jwt value
+        if(err.name === 'TokenExpiredError'){
+            const message = 'JSON web token is expired. Try Again'
+            error = new ErrorHandler(message, 400)
         }
 
         res.status(error.statusCode || 500).json({
