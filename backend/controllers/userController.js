@@ -2,7 +2,8 @@ const User = require('../models/User');
 
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
-const sendToken = require('../utils/jwtToken')
+const sendToken = require('../utils/jwtToken');
+const sendEmail = require('../utils/sendEmail');
 
 //register a user handler
 exports.registerUser = catchAsyncErrors(async (req, res, next)=>{
@@ -46,7 +47,46 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
     sendToken(user, 200, res)
 
 })
+//forgot password route => /api/vi/password/forgot
+exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findOne({ email: req.body.email })
 
+    if(!user) {
+        return next(new ErrorHandler('user not found with this email', 404));
+
+    }
+
+    const resetToken = user.getResetPasswordToken();
+
+    await user.save({ validateBeforeSave: false})
+
+    // create reset password url
+    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`;
+
+    const message = `Your password reset link: \n\n ${resetUrl}\n\n if you have not requested this email, then ignore it.`
+
+    try{
+        await sendEmail({ 
+            email: user.email,
+            subject: 'Gringo Caliente password revovery',
+            message
+        })
+
+        res.status(200).json({
+            success: true,
+            message: `email sent to ${user.email}`
+        })
+
+    }catch(error){
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpire = undefined;
+
+    await user.save({ validateBeforeSave: false})
+        
+    return next(new ErrorHandler(error.message, 500))
+    }
+
+})
 // logout user => /api/v1/logout
 exports.logoutUser = catchAsyncErrors(async (req, res, next)=>{
     res.cookie('token', null, {
