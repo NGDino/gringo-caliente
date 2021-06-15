@@ -6,6 +6,7 @@ const sendToken = require('../utils/jwtToken');
 const sendEmail = require('../utils/sendEmail');
 
 const crypto = require('crypto');
+const { send } = require('process');
 
 //register a user handler
 exports.registerUser = catchAsyncErrors(async (req, res, next)=>{
@@ -123,6 +124,21 @@ exports.getUserProfile = catchAsyncErrors(async (req, res, next) => {
         success: true,
         user
     })
+})
+
+//change password of logged in user => /api/v1/password/update
+exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.user.id).select('+password');
+
+    //check previous user Password
+    const isMatched = await user.comparePassword(req.body.oldPassword)
+    if(!isMatched){
+        return next(new ErrorHandler('Old password is incorect'));
+    }
+    user.password = req.body.password;
+    await user.save();
+
+    sendToken(user, 200, res)
 })
 
 // logout user => /api/v1/logout
