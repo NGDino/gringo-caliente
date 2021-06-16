@@ -156,7 +156,7 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        
+
     })
 })
 
@@ -171,3 +171,70 @@ exports.logoutUser = catchAsyncErrors(async (req, res, next)=>{
         message: 'Logged Out'
     })
 })
+
+// admin routes
+//get all users => /api/v1/admin/userSchema
+exports.allUsers = catchAsyncErrors(async (req, res, next) => {
+    const users = await User.find();
+
+    res.status(200).json({
+        success: true,
+        users
+    })
+})
+
+//get user details => /api/v1/admin/user/id
+exports.singleUser = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+
+    if(!user){
+        return next(new ErrorHandler(`User not found with the id: ${req.params.id}`, 500))
+    }
+
+    res.json({
+        success: true,
+        user
+    })
+});
+
+//admin update => /api/v1/admin/user/:id
+exports.updateUser = catchAsyncErrors(async (req, res, next) => {
+    const newUserData = {
+        name: req.body.name,
+        email: req.body.email,
+        role: req.body.role
+    }
+
+    const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+    })
+        if(!user) {
+        return next(new ErrorHandler('user not found with this email', 404));
+
+    }
+
+    res.status(200).json({
+        success: true,
+
+    })
+});
+
+//admin delete user => /api/v1/admin/user/:id
+exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+
+    if(!user){
+        return next(new ErrorHandler(`User not found with the id: ${req.params.id}`, 500))
+    }
+
+    //remove avatar from cloudinary TODO
+
+    await user.remove()
+
+    res.json({
+        success: true,
+    })
+});
+
