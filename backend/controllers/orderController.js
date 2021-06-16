@@ -105,3 +105,18 @@ async function updateStock(id, quantity){
 
     await product.save({ validateBeforeSave: false})
 }
+
+//delete order => api/vi/admin/order/:id
+exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
+    const order = await Order.findById(req.params.id).populate('user', 'name email');
+
+    if(!order){
+        return next(new ErrorHandler('no order with this id', 404))
+    }
+
+    await order.remove()
+
+    res.status(200).json({
+        success: true,
+    })
+})
