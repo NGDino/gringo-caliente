@@ -37,11 +37,4 @@ router.route('/admin/user/:id')
     .delete(isAthenticatedUser, authorizeRoles('admin'), deleteUser)
 
 
-
-
-
-
-
-
-
 module.exports = router
