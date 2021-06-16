@@ -5,6 +5,7 @@ const {
     newOrder, 
     singleOrder,
     myOrders,
+    getAllOrders,
 
 } = require('../controllers/orderController');
 
@@ -14,6 +15,9 @@ router.route('/order/new').post(isAuthenticatedUser, newOrder);
 
 router.route('/order/:id').get(isAuthenticatedUser, singleOrder);
 router.route('/orders/me').get(isAuthenticatedUser, myOrders);
+
+router.route('/admin/orders').get(isAuthenticatedUser, authorizeRoles('admin'), getAllOrders);
+
 
 
 
