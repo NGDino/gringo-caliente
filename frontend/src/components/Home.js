@@ -5,17 +5,27 @@ import Loader from '../components/layouts/Loader';
 import Product from './product/Product';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../actions/productActions'
+import { getProducts } from '../actions/productActions';
+import { useAlert } from 'react-alert';
 
 const Home = () => {
 
+    const alert = useAlert();
     const dispatch = useDispatch();
+
+    const {loading, products, error, productsCount } = useSelector(state => state.products);
+
     
     useEffect(() => {
-        dispatch(getProducts());
-    }, [dispatch])
+        
+        if(error) {
+            return alert.error(error)
+        }
 
-    const {loading, products, error, productsCount } = useSelector(state => state.products)
+        dispatch(getProducts());
+
+    }, [dispatch, alert, error])
+
 
     return (
         <Fragment className="container container-fluid">
@@ -28,7 +38,6 @@ const Home = () => {
 
                                 {products && products.map((product) =>(
                                     <Product key={product._id} product={product}/>
-                                
                                 ))}
                                 
 
