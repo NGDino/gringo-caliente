@@ -25,7 +25,7 @@ router.route('/admin/product/:id')
 
 router.route('/reviews').put(isAuthenticatedUser, createProductReview)
 router.route('/reviews').get(isAuthenticatedUser, getProductReviews)
-router.route('/reviews').delete(isAuthenticatedUser, authorizeRoles('admin'), deleteProductReviews)
+router.route('/reviews').delete(isAuthenticatedUser, deleteProductReviews)
 
 
 
