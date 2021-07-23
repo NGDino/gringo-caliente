@@ -26,7 +26,8 @@ const Home = ({match}) => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [heat, setHeat] = useState([1,4]);
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState('');
+    const [rating, setRating] = useState(0)
 
     const categories = [
         'Hot Sauce',
@@ -50,9 +51,9 @@ const Home = ({match}) => {
             return alert.error(error)
         }
 
-        dispatch(getProducts(keyword, currentPage, heat, category));
+        dispatch(getProducts(keyword, currentPage, heat, category, rating));
 
-    }, [dispatch, alert, error, keyword, currentPage, heat, category])
+    }, [dispatch, alert, error, keyword, currentPage, heat, category, rating])
 
     function setCurrentPageNo(pageNumber){
         setCurrentPage(pageNumber)
@@ -113,6 +114,27 @@ const Home = ({match}) => {
                                                         onClick= {()=> setCategory(category)}
                                                         >
                                                             {category}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                            <div className="mt-5">
+                                                <h4 className="mb-3">
+                                                    Ratings
+                                                </h4>
+                                                <ul className="pl-0">
+                                                    {[5,4,3,2,1].map(star => (
+                                                        <li
+                                                        style={{cursor: 'pointer',
+                                                                listStyleType: 'none',
+                                                            }}
+                                                        key={star}
+                                                        onClick= {()=> setRating(star)}
+                                                        >
+                                                            <div className="rating-outer">
+                                                                <div className="rating-inner" style={{ width: `${ star*20}%`}}/>
+                                                            </div>
+
                                                         </li>
                                                     ))}
                                                 </ul>
