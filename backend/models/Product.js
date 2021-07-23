@@ -50,18 +50,10 @@ const Product = new mongoose.Schema({
         }
     },
     heat: {
-        type: String,
-        required: [true, 'Please select a category'],
-        enum: {
-            values: [
-                'XXXTRA HOT',
-                'Hot',
-                'Medium',
-                'Mild',
-                'None',
-            ],
-            message: 'Please select correct heat'
-        }
+        type: Number,
+        required: [true, 'Please select a heat level'],
+        min: 1,
+        max: 4
     },
     seller: {
         type: String,
