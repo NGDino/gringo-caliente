@@ -4,18 +4,18 @@ import  {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     CLEAR_ERRORS
-} from '../constants/productConstants';
+} from '../constants/userConstants';
 
 export const login =(email, password) => async (dispatch) => {
     try{
         dispatch({ type: LOGIN_REQUEST})
         const config = {
             headers: {
-                'content-type': 'application/json',
+                'content-type': 'application/json'
             }
         }
 
-        const {data} = await axios.post('api/vi/login', {email, password}, config)
+        const {data} = await axios.post('api/v1/login', {email, password}, config)
         
         dispatch({ 
             type: LOGIN_SUCCESS,
@@ -28,4 +28,11 @@ export const login =(email, password) => async (dispatch) => {
             payload: error.response.data.message
         })
     }
+}
+
+//clear CLEAR_ERRORS
+export const clearErrors = () => async (dispatch) => {
+    dispatch({ 
+        type: CLEAR_ERRORS
+    })
 }
