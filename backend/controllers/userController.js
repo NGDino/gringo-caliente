@@ -6,10 +6,16 @@ const sendToken = require('../utils/jwtToken');
 const sendEmail = require('../utils/sendEmail');
 
 const crypto = require('crypto');
-const { send } = require('process');
+const cloudinary = require('cloudinary');
 
 //register a user handler
 exports.registerUser = catchAsyncErrors(async (req, res, next)=>{
+
+    const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: 'avatar',
+        width: 150,
+        crop: "scale"
+    })
     const {name, email, password} = req.body;
 
     const user = await User.create({
@@ -17,8 +23,8 @@ exports.registerUser = catchAsyncErrors(async (req, res, next)=>{
         email,
         password,
         avatar: {
-            public_id: 'v1623531940/otto.',
-            url: 'https://res.cloudinary.com/gringo-caliente/image/upload/v1623531940/otto.jpg'
+            public_id: result.public_id,
+            url: result.secure_url
         }
     })
     const token = user.getJwtToken();
