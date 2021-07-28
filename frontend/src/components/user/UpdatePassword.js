@@ -47,6 +47,7 @@ const UpdatePassword = ({history}) => {
 
         dispatch(updatePassword(formData))
     }
+    
     return (
         <Fragment>
             <MetaData title={'Change Password'}/>
