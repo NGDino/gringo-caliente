@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import MetaData from '../layouts/MetaData';
 
 import { forgotPassword, clearErrors } from '../../actions/userActions';
-import { UPDATE_PASSWORD_RESET } from '../../constants/userConstants';
 
 const ForgotPassword = () => {
 
