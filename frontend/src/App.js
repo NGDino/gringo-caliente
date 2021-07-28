@@ -13,6 +13,7 @@ import ProtectedRoute from './components/route/ProtectedRoute';
 import { loadUser } from './actions/userActions';
 import store from './store';
 import Profile from './components/user/Profile';
+import UpdateProfile from './components/user/UpdateProfile';
 
 function App() {
 
@@ -32,8 +33,7 @@ function App() {
             <Route path = "/register" component = {Register}/>
             <Route path = "/register" component = {Register}/>
             <ProtectedRoute path = "/me" component = {Profile} exact/>
-
-
+            <ProtectedRoute path = "/me/update" component = {UpdateProfile} exact/>
 
           </div>
         <Footer />

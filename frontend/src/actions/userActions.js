@@ -106,7 +106,7 @@ export const logout =() => async (dispatch) => {
     }
 }
 
-export const updateProfile =(userData) => async (dispatch) => {
+export const updateProfile = (userData) => async (dispatch) => {
     try{
         dispatch({
             type: UPDATE_PROFILE_REQUEST
@@ -118,7 +118,7 @@ export const updateProfile =(userData) => async (dispatch) => {
             }
         }
 
-        const {data} = await axios.put('api/v1/me/update', userData, config);
+        const {data} = await axios.put('/api/v1//me/update', userData, config);
 
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
