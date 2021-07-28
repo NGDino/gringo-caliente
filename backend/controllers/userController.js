@@ -70,7 +70,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     await user.save({ validateBeforeSave: false})
 
     // create reset password url
-    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`;
+    const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
 
     const message = `Your password reset link: \n\n ${resetUrl}\n\n if you have not requested this email, then ignore it.`
 
@@ -141,7 +141,7 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
     if(!isMatched){
         return next(new ErrorHandler('Old password is incorect'));
     }
-    user.password = req.body.password;
+    user.newPassword = req.body.newPassword;
     await user.save();
 
     sendToken(user, 200, res)
@@ -152,6 +152,22 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     const newUserData = {
         name: req.body.name,
         email: req.body.email
+    }
+
+    if(req.body.avater !== ''){
+        const user= await User.findById(req.user.id)
+        const image_id = user.avatar.public_id;
+        const res = await cloudinary.v2.uploader.destroy(image_id)
+        const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: 'avatar',
+            width: 150,
+            crop: "scale"
+        })
+
+        newUserData.avatar= {
+            public_id: result.public_id,
+            url: result.secure_url
+        }
     }
 
     const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
