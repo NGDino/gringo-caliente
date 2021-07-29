@@ -1,6 +1,6 @@
 import { 
     ADD_TO_CART,
-    ADD_TO_CART_SUCCESS,
+    REMOVE_FROM_CART,
     ADD_TO_CART_FAIL
 } from '../constants/cartConstants';
 
@@ -22,6 +22,12 @@ export const cartReducer = (state = { cartItems: [] } , action) => {
                     ...state,
                     cartItems: [...state.cartItems, item]
                 }
+            }
+
+        case REMOVE_FROM_CART:
+            return{
+                ...state,
+                cartItems: state.cartItems.filter(i => i.product !== action.payload)
             }
         default: 
             return state

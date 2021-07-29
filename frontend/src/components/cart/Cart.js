@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAlert } from 'react-alert';
 
-import { addItemToCart } from '../../actions/cartActions';
+import { addItemToCart, removeItemFromCart } from '../../actions/cartActions';
 
 import MetaData from '../layouts/MetaData';
 
@@ -32,6 +32,11 @@ const Cart = () => {
         dispatch(addItemToCart(id, newQty))
     }
 
+    const removeFromCartHandler =(id) =>{
+        console.log('fired', id);
+        dispatch(removeItemFromCart(id))
+    }
+
     return (
         <Fragment>
             <MetaData title={'Your Cart'} />
@@ -44,7 +49,7 @@ const Cart = () => {
                             {cartItems.map(item => (
                                 <Fragment>
                                     <hr/>
-                                    <div className="cart-item">
+                                    <div className="cart-item" key={item.product}>
                                         <div className="row">
                                             <div className="col-4 col-lg-3">
                                                 <img src={item.image} alt="Laptop" height="90" width="115"/>
@@ -69,7 +74,7 @@ const Cart = () => {
                                             </div>
 
                                             <div className="col-4 col-lg-1 mt-4 mt-lg-0">
-                                                <i id="delete_cart_item" className="fa fa-trash btn btn-danger"></i>
+                                                <i id="delete_cart_item" className="fa fa-trash btn btn-danger" onClick= {() =>removeFromCartHandler(item.product)} ></i>
                                             </div>
 
                                         </div>
