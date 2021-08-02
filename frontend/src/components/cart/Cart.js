@@ -34,7 +34,6 @@ const Cart = ({history}) => {
     }
 //remove from cart
     const removeFromCartHandler =(id) =>{
-        console.log('fired', id);
         dispatch(removeItemFromCart(id))
     }
 

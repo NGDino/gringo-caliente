@@ -31,8 +31,6 @@ const Shipping = ({history}) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log('states', usState)
-        console.log(city, address, zipCode, phoneNumber)
         dispatch(saveShippingInfo({address, city, phoneNumber, zipCode, usState} ))
 
         history.push('/order/confirm')

@@ -23,7 +23,6 @@ const Login = ({history, location}) => {
 
     useEffect(() => {
         
-        console.log('authenticated', isAuthenticated)
         if (isAuthenticated) {
             history.push(redirect)
         }

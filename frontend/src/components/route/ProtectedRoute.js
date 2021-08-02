@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 const ProtectedRoute = ({component: Component, ...rest}) => {
     const { isAuthenticated, loading, user } = useSelector(state => state.auth)
-    console.log('protectroute', isAuthenticated)
     return (
         <Fragment>
             {loading === false && (
