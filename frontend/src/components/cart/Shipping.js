@@ -8,6 +8,7 @@ import {UsaStates} from 'usa-states';
 import { saveShippingInfo } from '../../actions/cartActions';
 
 import MetaData from '../layouts/MetaData';
+import CheckoutSteps from './CheckoutSteps';
  
 
 const Shipping = ({history}) => {
@@ -41,6 +42,7 @@ const Shipping = ({history}) => {
     return (
         <Fragment>
             <MetaData title={'Shipping Info'}/>
+            <CheckoutSteps shipping/>
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
                     <form className="shadow-lg" onSubmit={submitHandler}>
