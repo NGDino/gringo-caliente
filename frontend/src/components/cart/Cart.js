@@ -8,7 +8,8 @@ import { addItemToCart, removeItemFromCart } from '../../actions/cartActions';
 import MetaData from '../layouts/MetaData';
 
 
-const Cart = () => {
+
+const Cart = ({history}) => {
 
     const dispatch = useDispatch();
 
@@ -35,6 +36,10 @@ const Cart = () => {
     const removeFromCartHandler =(id) =>{
         console.log('fired', id);
         dispatch(removeItemFromCart(id))
+    }
+
+    const checkoutHandler = () => {
+        history.push('login?redirect=shipping')
     }
 
     return (
@@ -93,7 +98,7 @@ const Cart = () => {
                                 <p>Est. total: <span className="order-summary-values">${cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0 ).toFixed(2)}</span></p>
 
                                 <hr />
-                                <button id="checkout_btn" className="btn btn-primary btn-block">Check out</button>
+                                <button id="checkout_btn" className="btn btn-primary btn-block" onClick={checkoutHandler}>Check out</button>
                             </div>
                         </div>
                     </div>
