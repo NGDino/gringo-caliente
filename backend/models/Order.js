@@ -10,7 +10,7 @@ const orderSchema = mongoose.Schema({
             type: String,
             required: true
         },
-        state: {
+        usState: {
             type: String,
             required: true
         },

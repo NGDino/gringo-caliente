@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAlert } from 'react-alert';
+import {createOrder, clearErrors} from '../../actions/orderActions';
 
 import MetaData from '../layouts/MetaData';
 import CheckoutSteps from './CheckoutSteps';
@@ -28,13 +29,29 @@ const Payment = ({ history }) => {
     const dispatch = useDispatch();
 
     const { user } = useSelector(state => state.auth);
-    const { cartItems, shippingInfo } = useSelector(state => state.cart)
+    const { cartItems, shippingInfo } = useSelector(state => state.cart);
+    const {error} = useSelector(state => state.newOrder);
 
     useEffect(() => {
+    
+        if(error) {
+            alert.error(error)
+            dispatch(clearErrors())
+        }
+    },[dispatch, alert, error])
 
-    })
+    let order = {
+        orderItems: cartItems,
+        shippingInfo,
+    }
 
-    const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'))
+    const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'));
+    if (orderInfo) {
+        order.itemsPrice = orderInfo.itemsPrice
+        order.shippingPrice = orderInfo.shippingPrice
+        order.taxPrice = orderInfo.taxPrice
+        order.totalPrice = orderInfo.totalPrice
+    }
     
     const paymentData = {
         amount: Math.round(orderInfo.totalPrice * 100)
@@ -81,6 +98,13 @@ const Payment = ({ history }) => {
                 //if payment processed
                 if(result.paymentIntent.status === 'succeeded'){
                     // place order 
+                    order.paymentInfo = {
+                        id: result.paymentIntent.id, 
+                        status: result.paymentIntent.status
+                    }
+
+                    console.log('predispatch', order)
+                    dispatch(createOrder(order))
 
                     history.push('/success')
                 }else{
