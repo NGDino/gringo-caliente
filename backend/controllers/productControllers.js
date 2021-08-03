@@ -111,7 +111,6 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
     }
 
     const product = await Product.findById(productId);
-    console.log(product.reviews)
 
 
     const isReviewed = product.reviews.find(
@@ -156,7 +155,6 @@ exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
 exports.deleteProductReviews = catchAsyncErrors(async (req, res, next) => {
 
     const product = await Product.findById(req.query.productId);
-    console.log(product.reviews)
     const reviews = product.reviews.filter(review => review._id.toString() != req.query.id.toString());
 
     const ratings = product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length;

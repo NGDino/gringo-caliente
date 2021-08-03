@@ -8,7 +8,6 @@ import {
 
 export const addItemToCart =  (id, quantity) => async (dispatch, getState) => {
     const {data} = await axios.get(`/api/v1/product/${id}`)
-    console.log('add to cart', data)
 
     dispatch({
         type: ADD_TO_CART,

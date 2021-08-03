@@ -100,7 +100,6 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 //reset password => api/vi/password/reset/sendToken
 exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
     const resetPasswordToken = crypto.createHash('sha256').update(req.params.token).digest('hex')
-    console.log(req.params.token)
 
     const user = await User.findOne({
         resetPasswordToken,

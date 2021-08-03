@@ -28,20 +28,17 @@ const Register = ({ history }) => {
 
     useEffect(() => {
 
-        console.log('authenticated', isAuthenticated)
         if (isAuthenticated) {
             history.push('/')
         }
 
         if (error) {
             alert.error(error);
-            console.log('error', error);
             dispatch(clearErrors());
         }
     }, [dispatch, alert, isAuthenticated, error, history]);
 
     const submitHandler = (e) => {
-        console.log(user)
         e.preventDefault();
         const formData = new FormData();
         formData.set('name', name);
