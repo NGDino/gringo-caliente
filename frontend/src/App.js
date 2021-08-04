@@ -28,6 +28,7 @@ import Payment from './components/cart/Payment';
 
 import { Elements } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js'
+import OrderDetails from './components/order/OrderDetails';
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
             <ProtectedRoute path = "/order/confirm" component = {ConfirmOrder} />
             <ProtectedRoute path = "/success" component = {OrderSuccess} />
             <ProtectedRoute path = "/orders/me" component = {ListOrders} />
+            <ProtectedRoute path = "/order/:id" component = {OrderDetails} />
 
 
             {stripeApiKey && 
