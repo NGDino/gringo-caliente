@@ -59,7 +59,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     }
 }
 
-export const newReviewReducer = (reviewData) => async (dispatch) => {
+export const newReview = (reviewData) => async (dispatch) => {
     try {
 
         dispatch({ type:NEW_REVIEW_REQUEST })
@@ -70,7 +70,7 @@ export const newReviewReducer = (reviewData) => async (dispatch) => {
             }
         }
 
-        const {data} = await axios.put(`/api/v1/review`)
+        const {data} = await axios.put(`/api/v1/review`, reviewData, config)
 
         dispatch({ 
             type: NEW_REVIEW_SUCCESS,
@@ -79,7 +79,7 @@ export const newReviewReducer = (reviewData) => async (dispatch) => {
 
     } catch (error) {
         dispatch({
-            type: PRODUCT_DETAILS_FAIL,
+            type: NEW_REVIEW_FAIL,
             payload: error.response.data.message
         })
     }
