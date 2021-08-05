@@ -10,6 +10,7 @@ import {Carousel} from 'react-bootstrap'
 
 import Loader from '../layouts/Loader';
 import MetaData from '../layouts/MetaData';
+import ListReviews from '../review/ListReviews';
 
 
 const ProductDetails = ({match}) => {
@@ -216,7 +217,12 @@ const ProductDetails = ({match}) => {
                             </div>
                         </div>
                     </div>
-
+                    
+                    {product.reviews && product.reviews.length > 0 && (
+                        
+                        <p><ListReviews reviews={product.reviews}/></p>
+                        )
+                    }
                 </Fragment>
             )}
     </Fragment>
