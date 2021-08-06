@@ -5,8 +5,11 @@ import axios from 'axios';
 import './App.css';
 import Header from './components/layouts/Header';
 import Footer from './components/layouts/Footer';
+
 import Home from './components/Home';
 import ProductDetails from './components/product/ProductDetails';
+
+
 import Cart from './components/cart/Cart';
 import Shipping from './components/cart/Shipping';
 import Login from './components/user/Login';
@@ -25,6 +28,11 @@ import ForgotPassword from './components/user/ForgotPassword';
 import NewPassword from './components/user/NewPassword';
 import ConfirmOrder from './components/cart/ConfirmOrder';
 import Payment from './components/cart/Payment';
+
+//admin imports
+import Dashboard from './components/admin/Dashboard';
+import ProductList from './components/admin/ProductList';
+
 
 import { Elements } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js'
@@ -62,14 +70,12 @@ function App() {
             <ProtectedRoute path = "/orders/me" component = {ListOrders} />
             <ProtectedRoute path = "/order/:id" component = {OrderDetails} />
 
-
             {stripeApiKey && 
               <Elements stripe={loadStripe(stripeApiKey)}>
                 <ProtectedRoute path = "/payment" component = {Payment} />
               </Elements>
             }
             
-
             <Route path = "/login" component = {Login}/>
             <Route path = "/register" component = {Register}/>
             <Route path = "/password/forgot" component = {ForgotPassword}/>
@@ -78,8 +84,11 @@ function App() {
             <ProtectedRoute path = "/me/update" component = {UpdateProfile} exact/>
             <ProtectedRoute path = "/password/update" component = {UpdatePassword} exact/>
 
-
           </div>
+          <ProtectedRoute path = "/dashboard" isAdmin={true} component = {Dashboard} exact/>
+          <ProtectedRoute path = "/admin/products" isAdmin={true} component = {ProductList} exact/>
+
+
         <Footer />
       </div>
     </Router>
