@@ -86,8 +86,6 @@ const NewProduct = ({ history }) => {
         images.forEach(image => {
             formData.append('images', image)
         })
-        console.log('name', category)
-        console.log('form', formData)
 
         dispatch(newProduct(formData))
     }

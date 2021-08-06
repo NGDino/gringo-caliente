@@ -102,7 +102,6 @@ export const newReview = (reviewData) => async (dispatch) => {
 
 export const newProduct = (productData) => async (dispatch) => {
     try {
-        console.log(productData)
 
         dispatch({ type:NEW_PRODUCT_REQUEST })
 
@@ -175,7 +174,6 @@ export const deleteProduct = (id) => async (dispatch) => {
 //update product action
 export const updateProduct = (id, productData) => async (dispatch) => {
     try {
-        console.log(productData)
 
         dispatch({ type:UPDATE_PRODUCT_REQUEST })
 
@@ -193,7 +191,6 @@ export const updateProduct = (id, productData) => async (dispatch) => {
         })
 
     } catch (error) {
-        console.log(error.response)
         dispatch({
             type: UPDATE_PRODUCT_FAIL,
             payload: error.response.data.message

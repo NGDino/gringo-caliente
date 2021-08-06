@@ -63,8 +63,6 @@ const UpdateProduct = ({match, history}) => {
 
     const productId = match.params.id;
 
-    console.log(productId)
-
     useEffect(() => {
 
         if(product && product._id !== productId) {
@@ -111,8 +109,6 @@ const UpdateProduct = ({match, history}) => {
         images.forEach(image => {
             formData.append('images', image)
         })
-        console.log('name', category)
-        console.log('form', formData)
 
         dispatch(updateProduct(product._id, formData))
     }
