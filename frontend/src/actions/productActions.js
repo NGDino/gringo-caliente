@@ -21,6 +21,10 @@ import {
     DELETE_PRODUCT_SUCCESS,
     DELETE_PRODUCT_FAIL,
     DELETE_PRODUCT_RESET,
+    UPDATE_PRODUCT_REQUEST,
+    UPDATE_PRODUCT_SUCCESS,
+    UPDATE_PRODUCT_FAIL,
+    UPDATE_PRODUCT_RESET,
     CLEAR_ERRORS
 } from '../constants/productConstants';
 
@@ -167,6 +171,36 @@ export const deleteProduct = (id) => async (dispatch) => {
         })
     }
 }
+
+//update product action
+export const updateProduct = (id, productData) => async (dispatch) => {
+    try {
+        console.log(productData)
+
+        dispatch({ type:UPDATE_PRODUCT_REQUEST })
+
+        const config = {
+            headers: {
+                'content-type': 'application/json'
+            }
+        }
+
+        const {data} = await axios.put(`/api/v1/admin/product/${id}`, productData, config)
+
+        dispatch({ 
+            type: UPDATE_PRODUCT_SUCCESS,
+            payload: data.success
+        })
+
+    } catch (error) {
+        console.log(error.response)
+        dispatch({
+            type: UPDATE_PRODUCT_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
 
 //clear CLEAR_ERRORS
 export const clearErrors = () => async (dispatch) => {
