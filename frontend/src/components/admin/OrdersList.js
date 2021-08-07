@@ -68,11 +68,12 @@ const OrdersList = () => {
 
 
         orders.forEach(order => {
+            console.log(order.orderStatus)
             data.rows.push({
                 id: order._id,
                 numOfItems: order.orderItems.length,
                 amount: `$${order.totalPrice.toFixed(2)}`, 
-                        status: order.orderStatus && String(order.orderStatus.includes('Delivered')) ? <p style={{color: 'green'}}>{order.orderStatus}</p> : <p style={{color: 'red'}}>{order.orderStatus}</p>,
+                status: order.orderStatus && String(order.orderStatus).includes('Delivered') ? <p style={{color: 'green'}}>{order.orderStatus}</p> : <p style={{color: 'red'}}>{order.orderStatus}</p>,
                 actions: 
                     <Fragment>
                             <Link to= {`/admin/order/${order._id}`} className= 'btn btn-primary py-1 px-2'>
