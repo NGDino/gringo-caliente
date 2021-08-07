@@ -1,9 +1,11 @@
 import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {getAdminProducts, clearErrors} from '../../actions/productActions'
+import {getAdminProducts,deleteProduct, clearErrors} from '../../actions/productActions'
 import { useAlert } from 'react-alert';
 import {MDBDataTable} from 'mdbreact';
+
+import {DELETE_PRODUCT_RESET} from '../../constants/productConstants'
 
 import MetaData from '../layouts/MetaData';
 import Loader from '../layouts/Loader';
@@ -16,7 +18,8 @@ const ProductList = ({ history }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
     
-    const { loading, error, products } = useSelector(state => state.products)
+    const { loading, error, products } = useSelector(state => state.products);
+    const {error: deleteError, isDeleted} = useSelector(state => state.product);
 
     useEffect(() => {
         dispatch(getAdminProducts());
@@ -25,8 +28,17 @@ const ProductList = ({ history }) => {
             alert.error(error);
             dispatch(clearErrors())
         }
+        if(deleteError) {
+            alert.error(error);
+            dispatch(clearErrors())
+        }
+        if(isDeleted){
+            alert.success('Product Deleted Successfully')
+            history.push('/admin/products')
+            dispatch({type: DELETE_PRODUCT_RESET})
+        }
         
-    },[dispatch, alert, error])
+    },[dispatch, alert, error, deleteError, isDeleted, history])
 
     const setProducts = () => {
         const data = {
@@ -57,10 +69,10 @@ const ProductList = ({ history }) => {
                     sort: 'asc'
                 },
         ],
-        rows: [
-
-        ]
+        rows: []
         }
+
+
         products.forEach((product) => {
             data.rows.push({
                 id: product._id,
@@ -72,7 +84,7 @@ const ProductList = ({ history }) => {
                             <Link to= {`/admin/product/${product._id}`} className= 'btn btn-primary py-1 px-2'>
                             <i className="fa fa-pencil"></i>
                         </Link>
-                        <button className="btn btn-danger py-1 px-2 ml-2">
+                        <button className="btn btn-danger py-1 px-2 ml-2" onClick={ () => deleteHandler(product._id)}>
                             <i className="fa fa-trash"></i>
                         </button>
                     </Fragment>
@@ -80,6 +92,10 @@ const ProductList = ({ history }) => {
             })
         })
         return data;
+    }
+
+    const deleteHandler = (id) =>{
+        dispatch(deleteProduct(id))
     }
 
     return (
