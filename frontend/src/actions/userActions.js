@@ -23,6 +23,9 @@ import  {
     RESET_PASSWORD_REQUEST,
     RESET_PASSWORD_SUCCESS,
     RESET_PASSWORD_FAIL,
+    ALL_USERS_REQUEST,
+    ALL_USERS_SUCCESS,
+    ALL_USERS_FAIL,
     CLEAR_ERRORS
 } from '../constants/userConstants';
 
@@ -126,7 +129,7 @@ export const updateProfile = (userData) => async (dispatch) => {
             }
         }
 
-        const {data} = await axios.put('/api/v1//me/update', userData, config);
+        const {data} = await axios.put('/api/v1/me/update', userData, config);
 
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
@@ -219,6 +222,26 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     }catch (error) {
         dispatch({
             type: RESET_PASSWORD_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+export const allUsers =() => async (dispatch) => {
+    try{
+        dispatch({ type: ALL_USERS_REQUEST})
+
+
+        const {data} = await axios.get('/api/v1/admin/users')
+        
+        dispatch({ 
+            type: ALL_USERS_SUCCESS,
+            payload: data.users
+        })
+
+    } catch (error) {
+        dispatch({
+            type: ALL_USERS_FAIL,
             payload: error.response.data.message
         })
     }

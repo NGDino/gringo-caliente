@@ -1,7 +1,8 @@
 import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAdminProducts } from '../../actions/productActions'
-import { getAllOrders } from '../../actions/orderActions'
+import { getAllOrders } from '../../actions/orderActions';
+import {allUsers} from '../../actions/userActions';
 
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +17,7 @@ const Dashboard = () => {
 
     const { products } = useSelector(state => state.products);
     const { orders, loading, totalAmount } = useSelector(state => state.allOrders);
+    const {users} = useSelector(state => state.allUsers);
 
     let outOfStock = 0;
     products.forEach((product) => {
@@ -27,6 +29,7 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(getAdminProducts())
         dispatch(getAllOrders())
+        dispatch(allUsers())
     }, [dispatch])
     return (
         <Fragment>
@@ -85,7 +88,7 @@ const Dashboard = () => {
                                 <div className="col-xl-3 col-sm-6 mb-3">
                                     <div className="card text-white bg-info o-hidden h-100">
                                         <div className="card-body">
-                                            <div className="text-center card-font-size">Users<br /> <b>45</b></div>
+                                            <div className="text-center card-font-size">Users<br /> <b>{users && users.length}</b></div>
                                         </div>
                                         <Link className="card-footer text-white clearfix small z-1" to="/admin/users">
                                             <span className="float-left">View Details</span>
