@@ -74,7 +74,6 @@ const UserList = ({ history }) => {
 
 
         users.forEach(user => {
-            console.log(user.orderStatus)
             data.rows.push({
                 id: user._id,
                 name: user.name,
