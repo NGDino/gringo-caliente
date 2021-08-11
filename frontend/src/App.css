@@ -30,8 +30,19 @@ nav {
   background-color: #232f3e;
   padding: 1rem 1rem;
 }
+#carousel{
+  background-color: #fff;
+  border: 2px solid #AAAAAA;
+}
+
 #white-bg{
   background-color: #fff;
+  border: 2px solid #AAAAAA;
+  border-radius: 15px;
+}
+
+#login-bg{
+  background-color: rgba(139, 139, 139, 0.514);
   border: 2px solid #AAAAAA;
   border-radius: 15px;
 }
