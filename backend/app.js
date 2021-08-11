@@ -29,14 +29,14 @@ app.use('/api/v1', payment)
 app.use('/api/v1', auth)
 app.use('/api/v1', order)
 
-app.use('/images', express.static(path.join(__dirname, '../client/images')));
+app.use('/images', express.static(path.join(__dirname, '../frontend/images')));
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build')));
+    app.use(express.static(path.join(__dirname, '../frontend/build')));
 }
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 });
 
 //testing stats
