@@ -10,7 +10,7 @@ const path = require('path');
 
 const errorMiddleware = require('./middlewares/errors')
 
-if(process.env.NODE_ENV !== 'PRODUCTION') require('dotenv').config({ path: 'backend/config/config.env' });
+if(process.env.NODE_ENV !== 'PRODUCTION') dotenv.config({ path: 'backend/config/config.env' });
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -29,7 +29,7 @@ app.use('/api/v1', payment)
 app.use('/api/v1', auth)
 app.use('/api/v1', order)
 
-if(process.env.NODE_ENV === 'production') {
+if(process.env.NODE_ENV === 'PRODUCTION') {
     app.use(express.static(path.join(__dirname, '../frontend/build')))
 
     app.get('*', (req, res) => {

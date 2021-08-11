@@ -53,7 +53,7 @@ const UpdatePassword = ({history}) => {
             <MetaData title={'Change Password'}/>
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
-                    <form className="shadow-lg" id ="login-bg" onSubmit={submitHandler}>
+                    <form className="shadow-lg" id="login-bg" onSubmit={submitHandler}>
                         <h1 className="mt-2 mb-5">Update Password</h1>
                         <div className="form-group">
                             <label htmlFor="old_password_field">Old Password</label>

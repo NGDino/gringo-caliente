@@ -74,7 +74,7 @@ const Register = ({ history }) => {
             <div className="container container-fluid">
                 <div className="row wrapper">
                     <div className="col-10 col-lg-5">
-                        <form className="shadow-lg" id ="login-bg" encType='multipart/form-data' onSubmit={submitHandler}>
+                        <form className="shadow-lg" id="login-bg" encType='multipart/form-data' onSubmit={submitHandler}>
                             <h1 className="mb-3">Register</h1>
 
                             <div className="form-group">
