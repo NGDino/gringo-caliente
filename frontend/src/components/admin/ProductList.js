@@ -108,10 +108,10 @@ const ProductList = ({ history }) => {
 
                 <div className="col-12 col-md-10">
                     <Fragment>
-                        <h1 className="my-5">All Products</h1>
+                        <h1 className="my-5 text-center"><strong>All Products</strong></h1>
                         {loading ? <Loader/> : (
                             <Fragment>
-                                <MDBDataTable
+                                <MDBDataTable id="table-bg"
                                     data={setProducts()}
                                     className='px-3'
                                     bordered

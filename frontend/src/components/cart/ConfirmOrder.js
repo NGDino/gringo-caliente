@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 //states from package
-import { UsaStates } from 'usa-states';
 
 
 import MetaData from '../layouts/MetaData';
@@ -16,8 +15,8 @@ const ConfirmOrder = ({ history }) => {
 
     //calculate order prices
     const itemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    const shippingPrice = itemsPrice > 100 ? 0  : 9.95 
-    const taxPrice = Number((0.08 * itemsPrice).toFixed(2))
+    const shippingPrice = itemsPrice > 100 ? 0  : 9.95 ;
+    const taxPrice = Number((0.08 * itemsPrice).toFixed(2));
     const totalPrice = ((itemsPrice + shippingPrice + taxPrice).toFixed(2))
 
     const proceedToPayment = () => {
@@ -31,16 +30,16 @@ const ConfirmOrder = ({ history }) => {
         history.push('/payment')
     }
     return (
-        <div>
+        <Fragment>
 
             <MetaData title={'Confirm Order'} />
             <CheckoutSteps shipping confirmOrder />
 
             <div className="row d-flex justify-content-between">
-                <div className="col-12 col-lg-8 mt-5 order-confirm">
+                <div className="col-12 col-lg-8 mt-5 order-confirm p-4" id="white-bg">
 
                     <h4 className="mb-3">Shipping Info</h4>
-                    <p><b>Name:</b>{user && user.name}</p>
+                    <p><b>Name:</b> {user && user.name}</p>
                     <p><b>Phone:</b> {shippingInfo.phoneNumber}</p>
                     <p className="mb-4"><b>Address:</b> {`${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.usState}, ${shippingInfo.zipCode}`}</p>
 
@@ -70,8 +69,6 @@ const ConfirmOrder = ({ history }) => {
                         </Fragment>
                     ))}
 
-
-
                 </div>
 
                 <div className="col-12 col-lg-3 my-4">
@@ -93,7 +90,7 @@ const ConfirmOrder = ({ history }) => {
 
 
             </div>
-        </div>
+        </Fragment>
     )
 }
 

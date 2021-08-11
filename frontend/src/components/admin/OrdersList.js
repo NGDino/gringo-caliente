@@ -74,7 +74,6 @@ const OrdersList = ({history}) => {
 
 
         orders.forEach(order => {
-            console.log(order.orderStatus)
             data.rows.push({
                 id: order._id,
                 numOfItems: order.orderItems.length,
@@ -104,10 +103,10 @@ const OrdersList = ({history}) => {
 
             <div className="col-12 col-md-10">
                 <Fragment>
-                    <h1 className="my-5">All Orders</h1>
+                    <h1 className="my-5 text-center" >All Orders</h1>
                     {loading ? <Loader/> : (
                         <Fragment>
-                            <MDBDataTable
+                            <MDBDataTable id="table-bg"
                                 data={setOrders()}
                                 className='px-3'
                                 bordered

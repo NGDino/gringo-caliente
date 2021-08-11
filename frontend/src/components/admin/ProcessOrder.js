@@ -12,14 +12,14 @@ import Loader from '../layouts/Loader';
 import Sidebar from './Sidebar';
 
 
-const ProcessOrder = ({match, history}) => {
+const ProcessOrder = ({ match, history }) => {
 
     const [status, setStatus] = useState('');
 
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { loading, order ={} } = useSelector(state => state.orderDetails)
+    const { loading, order = {} } = useSelector(state => state.orderDetails)
 
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order
     const { error, isUpdated } = useSelector(state => state.order)
@@ -69,11 +69,11 @@ const ProcessOrder = ({match, history}) => {
 
                 <div className="col-12 col-md-10">
                     <Fragment>
-                        <h1 className="my-5">Process Order</h1>
+                        <h1 className="my-5 text-center"><strong>Process Order</strong></h1>
                         {loading ? <Loader /> : (
                             <Fragment>
                                 <div className="row d-flex justify-content-around">
-                                    <div className="col-12 col-lg-7 order-details">
+                                    <div className="col-12 col-lg-7 order-details" id="white-bg">
 
                                         <h2 className="my-5">Order #{order._id}</h2>
 
@@ -126,25 +126,28 @@ const ProcessOrder = ({match, history}) => {
                                         <hr />
                                     </div>
 
-                                    <div className="col-12 col-lg-3 mt-5">
-                                        <h4 className="my-4">Status</h4>
+                                    <div className="col-12 col-lg-3 mt-5"  >
+                                        <div className="p-5" id="white-bg">
+                                            <h4 className="my-4">Status</h4>
 
-                                        <div className="form-group">
-                                            <select
-                                                className="form-control"
-                                                name='status'
-                                                value={status}
-                                                onChange={(e) => setStatus(e.target.value)}
-                                            >
-                                                <option value="Processing">Processing</option>
-                                                <option value="Shipped">Shipped</option>
-                                                <option value="Delivered">Delivered</option>
-                                            </select>
+                                            <div className="form-group">
+                                                <select
+                                                    className="form-control"
+                                                    name='status'
+                                                    value={status}
+                                                    onChange={(e) => setStatus(e.target.value)}
+                                                >
+                                                    <option value="Processing">Processing</option>
+                                                    <option value="Shipped">Shipped</option>
+                                                    <option value="Delivered">Delivered</option>
+                                                </select>
+                                            </div>
+
+                                            <button className="btn btn-primary btn-block" onClick={() => updateOrderHandler(order._id)}>
+                                                Update Status
+                                            </button>
                                         </div>
 
-                                        <button className="btn btn-primary btn-block" onClick={()=> updateOrderHandler(order._id)}>
-                                            Update Status
-                                        </button>
                                     </div>
 
                                 </div>

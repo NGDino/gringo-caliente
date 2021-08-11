@@ -148,7 +148,7 @@ const UpdateProduct = ({match, history}) => {
                 <div className="col-12 col-md-10">
                     <Fragment>
                         <div className="wrapper my-5">
-                            <form className="shadow-lg" encType='multipart/form-data' onSubmit={submitHandler}>
+                            <form className="shadow-lg" encType='multipart/form-data' onSubmit={submitHandler} id='white-bg'>
                                 <h1 className="mb-4">Update Product</h1>
 
                                 <div className="form-group">

@@ -16,7 +16,7 @@ const Cart = ({history}) => {
     const { cartItems } = useSelector(state => state.cart);
 
     const increaseQuantity = (id, quantity , stock )=> {
-        const newQty = quantity +1 ;
+        const newQty = quantity + 1 ;
 
         if(newQty > stock) return 
         
@@ -44,12 +44,12 @@ const Cart = ({history}) => {
     return (
         <Fragment>
             <MetaData title={'Your Cart'} />
-            {cartItems.length === 0 ? (<h2 className='mt-5'>Your Cart is Empty</h2>) : (
-                <Fragment>
-                    <h2 className="mt-5">Your Cart: <b>2 items</b></h2>
+            {cartItems.length === 0 ? (<h2 className='mt-5 p-4' id="white-bg">Your Cart is Empty</h2>) : (
+                <Fragment >
 
                     <div className="row d-flex justify-content-between">
-                        <div className="col-12 col-lg-8">
+                        <div className="col-12 col-lg-8 mt-5" id = "white-bg">
+                        <h2 className="mt-5">Your Cart: <b>{cartItems.length} items</b></h2>
                             {cartItems.map(item => (
                                 <Fragment key={item.product}>
                                     <hr/>

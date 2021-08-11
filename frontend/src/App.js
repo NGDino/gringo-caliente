@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {useSelector} from 'react-redux'
 import axios from 'axios';
 
 import './App.css';
@@ -37,12 +38,13 @@ import UpdateProduct from './components/admin/UpdateProduct';
 import OrdersList from './components/admin/OrdersList';
 import ProcessOrder from './components/admin/ProcessOrder';
 import UserList from './components/admin/UserList';
-
+import OrderDetails from './components/order/OrderDetails';
+import UpdateUser from './components/admin/UpdateUser';
+import ProductReviews from './components/admin/ProductReviews';
 
 import { Elements } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js'
-import OrderDetails from './components/order/OrderDetails';
-import UpdateUser from './components/admin/UpdateUser';
+
 
 function App() {
 
@@ -59,22 +61,25 @@ function App() {
     getStripeApiKey() 
 
   },[]);
+
+  const {user, isAuthenticated, loading} = useSelector(state => state.auth)
   
   return (
     <Router>
-      <div className="App">
+      <div className="App" style={{ backgroundImage: "url(/images/chilli-background.jpg)", backgroundSize: 'cover', minHeight:'100vh'}}>
         <Header/>
-          <div className="container container-fluid">
+          <div className="container container-fluid" >
             <Route path = "/" component = {Home} exact/>
             <Route path = "/search/:keyword" component = {Home}/>
             <Route path = "/product/:id" component = {ProductDetails} exact/>
           
             <Route path = "/cart" component = {Cart} exact/>
-            <ProtectedRoute path = "/shipping" component = {Shipping} exact/>
-            <ProtectedRoute path = "/order/confirm" component = {ConfirmOrder} />
+            <ProtectedRoute path = "/shipping" component = {Shipping} />
+            <ProtectedRoute path = "/order/confirm" component = {ConfirmOrder} exact />
             <ProtectedRoute path = "/success" component = {OrderSuccess} />
+            
             <ProtectedRoute path = "/orders/me" component = {ListOrders} />
-            <ProtectedRoute path = "/order/:id" component = {OrderDetails} />
+            <ProtectedRoute path = "/order/me/:id" component = {OrderDetails}/>
 
             {stripeApiKey && 
               <Elements stripe={loadStripe(stripeApiKey)}>
@@ -99,12 +104,14 @@ function App() {
           <ProtectedRoute path = "/admin/order/:id" isAdmin={true} component = {ProcessOrder} exact/>
           <ProtectedRoute path = "/admin/users" isAdmin={true} component = {UserList} exact/>
           <ProtectedRoute path = "/admin/user/:id" isAdmin={true} component = {UpdateUser} exact/>
+          <ProtectedRoute path = "/admin/reviews" isAdmin={true} component = {ProductReviews} exact/>
+          
 
 
 
-
-
-        <Footer />
+        {!loading && (!isAuthenticated || user.role !== 'admin') && (
+          <Footer />
+        )}
       </div>
     </Router>
   );

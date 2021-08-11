@@ -43,7 +43,7 @@ const Shipping = ({history}) => {
             <CheckoutSteps shipping/>
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
-                    <form className="shadow-lg" onSubmit={submitHandler}>
+                    <form className="shadow-lg" onSubmit={submitHandler} id="white-bg">
                         <h1 className="mb-4">Shipping Info</h1>
                         <div className="form-group">
                             <label htmlFor="address_field">Address</label>

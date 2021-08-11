@@ -80,7 +80,7 @@ const UpdateUser = ({ match, history }) => {
                     <Fragment>
                         <div className="row wrapper">
                             <div className="col-10 col-lg-5">
-                                <form className="shadow-lg" onSubmit={submitHandler}>
+                                <form className="shadow-lg" onSubmit={submitHandler} id="white-bg">
                                     <h1 className="mt-2 mb-5">Update User</h1>
 
                                     <div className="form-group">

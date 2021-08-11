@@ -67,7 +67,7 @@ const ListOrders = () => {
                 amount: `$${order.totalPrice.toFixed(2)}`, 
                 status: order.orderStatus && String(order.orderStatus.includes('Delivered')) ? <p style={{color: 'green'}}>{order.orderStatus}</p> : <p style={{color: 'red'}}>{order.orderStatus}</p>,
                 actions: 
-                    <Link to= {`/order/${order._id}`} className= 'btn btn-primary'>
+                    <Link to= {`/order/me/${order._id}`} className= 'btn btn-primary'>
                         <i className="fa fa-eye"></i>
                     </Link>
             })
@@ -77,10 +77,10 @@ const ListOrders = () => {
     return (
         <Fragment>
             <MetaData title={'My Orders'}/>
-            <h1 className="mt-5"> My Orders</h1>
+            <h1 className="mt-5 text-center"> <strong> My Orders </strong></h1>
 
             {loading? <Loader/> : (
-                <MDBDataTable
+                <MDBDataTable id="table-bg"
                 data={setOrders()}
                 className='px-3'
                 bordered
