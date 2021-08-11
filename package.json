@@ -2,14 +2,12 @@
   "name": "gringo-caliente",
   "version": "1.0.0",
   "description": "A hot sauce webstore",
-  "main": "server.js",
-  "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "cd backend && node server",
-    "start:dev": "concurrently \" nodemon backend/server\" \"cd frontend && npm start\"",
-    "install": "npm i && cd frontend && npm i",
+  "main": "server.js",  "scripts": {
+    "start": "SET node backend/server.js",
+    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/server",
+    "prod": "SET NODE_ENV=PRODUCTION& nodemon backend/server",
     "seeder": "node backend/utils/seeder.js",
-    "heroku-postbuild": "cd frontend && npm run build && cd .."
+    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "repository": {
     "type": "git",
