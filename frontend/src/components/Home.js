@@ -77,7 +77,7 @@ const Home = ({match}) => {
                         
                             {keyword ? (
                                 <Fragment>
-                                    <div className="col-6 col-md-3 mt-5 mb-5">
+                                    <div className="col-12 col-md-3 pt-4 mt-5 mb-5" id="white-bg">
                                         <div className="px-5">
                                         <h4 className="mb-3">
                                             Heat
@@ -141,7 +141,7 @@ const Home = ({match}) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-6 col-md-9">
+                                    <div className="col-12 col-md-9">
                                         <div className="row">
                                             {products.map((product) =>(
                                             <Product key={product._id} product={product} col={4}/>

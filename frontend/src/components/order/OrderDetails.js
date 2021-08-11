@@ -12,8 +12,8 @@ const OrderDetails = ({ match }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { loading, error, order ={} } = useSelector(state => state.orderDetails)
-    let { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order
+    const { loading, error, order = {} } = useSelector(state => state.orderDetails)
+    const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order
 
     useEffect(() => {
         dispatch(orderDetails(match.params.id));
@@ -37,7 +37,7 @@ const OrderDetails = ({ match }) => {
             {loading ? <Loader /> : (
                 <Fragment>
                     <div className="row d-flex justify-content-between">
-                        <div className="col-12 col-lg-8 mt-5 order-details">
+                        <div className="col-12 col-lg-8 mt-5 order-details mb-2" id="white-bg">
 
                             <h1 className="my-5">Order # {order._id}</h1>
 
@@ -45,7 +45,7 @@ const OrderDetails = ({ match }) => {
                             <p><b>Name:</b> {user && user.name}</p>
                             <p><b>Phone:</b> {shippingInfo && shippingInfo.phoneNumber}</p>
                             <p className="mb-4"><b>Address:</b>{shippingDetails} </p>
-                            <p><b>Amount:</b> ${totalPrice.toFixed(2)}</p>
+                            <p><b>Amount:</b> ${totalPrice}</p>
 
                             <hr />
 
