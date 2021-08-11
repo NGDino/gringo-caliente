@@ -44,8 +44,8 @@ const ForgotPassword = () => {
         <Fragment>
             <MetaData title={'Forgot Password'}/>
             <div className="row wrapper">
-                <div className="col-10 col-lg-5">
-                    <form className="shadow-lg" onSubmit={submitHandler}>
+                <div className="col-10 col-lg-5" >
+                    <form className="shadow-lg" onSubmit={submitHandler} id="login-bg">
                         <h1 className="mb-3">Forgot Password</h1>
                         <div className="form-group">
                             <label htmlFor="email_field">Enter Email</label>

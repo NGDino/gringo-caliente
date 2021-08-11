@@ -52,7 +52,7 @@ const NewPassword = ({ history, match }) => {
             <MetaData title="Reset Password" />
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
-                    <form className="shadow-lg" onSubmit={submitHandler}>
+                    <form className="shadow-lg" id="login-bg"  onSubmit={submitHandler}>
                         <h1 className="mb-3">New Password</h1>
 
                         <div className="form-group">

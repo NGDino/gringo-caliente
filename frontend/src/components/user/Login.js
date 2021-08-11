@@ -46,7 +46,7 @@ const Login = ({history, location}) => {
                     <div className="container container-fluid">
                         <div className="row wrapper">
                             <div className="col-10 col-lg-5">
-                                <form className="shadow-lg" onSubmit={submitHandler}>
+                                <form className="shadow-lg" onSubmit={submitHandler} id="login-bg">
                                     <h1 className="mb-3">Login</h1>
                                     <div className="form-group">
                                         <label htmlFor="email_field">Email</label>
@@ -82,7 +82,7 @@ const Login = ({history, location}) => {
                                         LOGIN
                                     </button>
 
-                                    <Link to="/register" className="float-right mt-3">New User?</Link>
+                                    <Link to="/register" className="float-right mt-3 mb-2">New User?</Link>
                                 </form>
                             </div>
                         </div>

@@ -122,11 +122,11 @@ const ProductDetails = ({match}) => {
         <Fragment>
             {loading ? <Loader/> : (
 
-                <Fragment>
+                <Fragment >
                     <MetaData title={product.name}/>
                     <div className="row f-flex justify-content-around">
                         <div className="col-12 col-lg-5 img-fluid" id="product_image">
-                            <Carousel pause='hover'>
+                            <Carousel pause='hover' id="carousel">
                                 {product.images && product.images.map(image => (
                                     <Carousel.Item key={image.public_id}>
                                         <img className="d-block w-100" src={image.url} alt={product.title}/>
@@ -135,7 +135,8 @@ const ProductDetails = ({match}) => {
                             </Carousel>
                         </div>
 
-                        <div className="col-12 col-lg-5 mt-5">
+                        <div className="col-12 col-lg-5 mt-5" >
+                            <div className="p-4" id="white-bg">
                             <h3>{product.name}</h3>
                             <p id="product_id">Product # {product._id}</p>
 
@@ -173,6 +174,8 @@ const ProductDetails = ({match}) => {
                             </button> :  
                             <div className="alert alert-danger mt-5" >Login to post review</div>
                             }
+                            </div> 
+                       
                             
                             <div className="row mt-2 mb-5">
                                 <div className="rating w-50">
@@ -199,7 +202,7 @@ const ProductDetails = ({match}) => {
                                                     <textarea 
                                                     name="review" 
                                                     id="review" 
-                                                    className="form-control mt-3" 
+                                                    className="form-control mt-3 " 
                                                     value= {comment} 
                                                     onChange = {(e) => setComment(e.target.value)}
                                                     >
@@ -219,10 +222,13 @@ const ProductDetails = ({match}) => {
                     </div>
                     
                     {product.reviews && product.reviews.length > 0 && (
+                        <div className="col-12 p-4 " id="white-bg">
                         
                         <p><ListReviews reviews={product.reviews}/></p>
+                        </div>
                         )
                     }
+                    
                 </Fragment>
             )}
     </Fragment>
