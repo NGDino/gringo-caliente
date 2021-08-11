@@ -4,11 +4,12 @@
   "description": "A hot sauce webstore",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/server",
-    "prod": "SET NODE_ENV=PRODUCTION& nodemon backend/server",
-    "seeder": "node backend/utils/seeder.js"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "cd backend && npm start",
+    "start:dev": "concurrently \" nodemon backend/server\" \"cd frontend && npm start\"",
+    "install": "cd backend && npm i && cd ../frontend && npm i",
+    "seeder": "node backend/utils/seeder.js",
+    "heroku-postbuild": "cd frontend && npm run build && cd ../backend"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cloudinary": "^1.26.2",
+    "concurrently": "^6.2.1",
     "cookie-parser": "^1.4.5",
     "country-state-city": "^3.0.1",
     "dotenv": "^10.0.0",
