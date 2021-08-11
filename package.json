@@ -7,7 +7,7 @@
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "cd backend && npm start",
     "start:dev": "concurrently \" nodemon backend/server\" \"cd frontend && npm start\"",
-    "install": "cd backend && npm i && cd ../frontend && npm i",
+    "install": "npm i && cd ../frontend && npm i",
     "seeder": "node backend/utils/seeder.js",
     "heroku-postbuild": "cd frontend && npm run build && cd ../backend"
   },
