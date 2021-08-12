@@ -46,6 +46,8 @@ const Register = ({ history }) => {
         formData.set('password', password);
         formData.set('avatar', avatar);
 
+        console.log('form', formData)
+
         dispatch(register(formData))
     }
 

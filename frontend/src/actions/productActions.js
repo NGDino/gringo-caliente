@@ -32,13 +32,11 @@ import {
 
 export const getProducts = (keyword ='', currentPage = 1, heat, category, rating = 0) => async (dispatch) => {
     try {
-        console.log('dispatch hit')
 
         dispatch({ type: ALL_PRODUCTS_REQUEST })
 
         let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&heat[lte]=${heat[1]}&heat[gte]=${heat[0]}&ratings[gte]=${rating}`
 
-        console.log(link)
 
         if(category){
             link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&heat[lte]=${heat[1]}&heat[gte]=${heat[0]}&category=${category}&ratings[gte]=${rating}`
@@ -46,7 +44,6 @@ export const getProducts = (keyword ='', currentPage = 1, heat, category, rating
 
         const {data} = await axios.get(link)
 
-        console.log(data)
 
         dispatch({ 
             type: ALL_PRODUCTS_SUCCESS,
