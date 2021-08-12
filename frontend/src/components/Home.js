@@ -46,12 +46,14 @@ const Home = ({match}) => {
     const keyword = match.params.keyword
     
     useEffect(() => {
+        console.log('useEffect')
         
         if(error) {
             return alert.error(error)
         }
 
-        dispatch(getProducts(keyword, currentPage, heat, category, rating));
+        dispatch(getProducts(keyword, currentPage, heat, category, rating)); 
+        console.log(products)
 
     }, [dispatch, alert, error, keyword, currentPage, heat, category, rating])
 
