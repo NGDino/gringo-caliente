@@ -3,53 +3,67 @@
         "name": "Tapitio Hot Sauce - 10 oz",
         "price": 4.99,
         "description": "Tapatio pronounced [Tah-pah-tee-o] is a Mexican hot sauce that is well known for its wild and mild flavor. This flavorful condiment has mild heat and is perfect for improving the taste and adding a touch of flavor to almost any dish without stinging or numbing your tongue.",
-        "rating": 3.1,
+        "rating": 0,
         "images": [
             {
-                "id": "djlwiegh464",
                 "public_id": "sauces/tapitio",
                 "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1623183604/sauces/tapatio.jpg"
             }
         ],
         "category": "Hot Sauce",
-        "heat": "Medium",
-        "seller": "theDino",
-        "stock": 14
+        "heat": 2,
+        "seller": "Jeff Bridges",
+        "stock": 144
         
     },
     {
         "name": "Walkerswood Spicy Jamaican Jerk Marinade",
         "price": 7.99,
         "description": "Has been formulated from our Jerk Seasoning as a wet rub/marinade that can be used when time is short and you need your flavor to penetrate your meats fast. Apply in a similar proportion to our Jerk Seasoning ( 1oz Jerk Marinade : 2.2 lbs / 1kg Meat) and allow to marinate for minimum half hour before cooking.",
-        "rating": 4.9,
+        "rating": 0,
         "images": [
             {
-                "id": "djlwiegh464",
-                "public_id": "sauces/jerk-marinade",
-                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1623183768/sauces/GUEST_c4488e2c-5357-45e6-ac4e-b92b1982d1c8_ommafb.jpg"
+                "public_id": "sauces/bj1o8duxdcib9llkle3g",
+                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1628281387/sauces/bj1o8duxdcib9llkle3g.jpg"
             }
         ],
         "category": "Marinade",
-        "heat": "Hot",
-        "seller": "theDino",
-        "stock": 7
+        "heat": 3,
+        "seller": "Jeff Bridges",
+        "stock": 24
             
-        },
+    },
+    {
+        "name": "Paqui One Chip Challenge",
+        "price": 6.95,
+        "description": "One eye-watering, curse-inducing chip made with the hottest peppers on the planet.",
+        "rating": 0,
+        "images": [
+            {
+                "public_id": "sauces/661y2dXa_n8L._SY879__urf4l",
+                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1628878871/sauces/61y2dXa_n8L._SY879__urf4l3.jpg"
+            }
+        ],
+        "category": "Snacks",
+        "heat": 4,
+        "seller": "Boba Fett",
+        "stock": 22
+        
+    },
     {
         "name": "Sweet Baby Ray's Honey BBQ Sauce- 16 oz",
         "price": 3.99,
         "description": "We got more than a few stings reaching for the honeycomb, but the result of this Sweeter Baby Ray's flavor is worth the pain. The rich, silky flavor of this sauce is perfect for sweetening up everything from home fries to hamburgers.",
-        "rating": 4.1,
+        "rating": 0,
         "images": [
             {
-                "id": "djlwiegh464",
-                "public_id": "sauces/tapitio",
+                "public_id": "sauces/61og8pFoSVL._SX425__xmcqsz",
                 "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1623183683/sauces/61og8pFoSVL._SX425__xmcqsz.jpg"
             }
         ],
         "category": "BBQ Sauce",
-        "heat": "Hot",
-        "seller": "theDino",
+        "heat": 1,
+        "seller": "Jeff Bridges",
         "stock": 7
         
     },
@@ -57,18 +71,188 @@
         "name": "Melindas OriginalHabenero Mango Hot Sauce pepper sauce- 5 oz",
         "price": 4.99,
         "description": "Melinda’s is the original habanero pepper sauce and is world-renowned for its exceptional balance of heat and flavor. Melinda’s Mango is a sweet, robust sauce dripping with the taste of fresh mangoes and the distinct flavor of the Habanero. Its medium heat level makes it perfect for liberal use. Try it for basting, marinades, and salad dressings.",
-        "rating": 4.4,
+        "rating": 0,
         "images": [
             {
-                "id": "mango-hot",
-                "public_id": "sauces/tapitio",
+                "public_id": "sauces/Melindas-Mango-Hot-Sauce_njuia4",
                 "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1623183611/sauces/Melindas-Mango-Hot-Sauce_njuia4.jpg"
             }
         ],
         "category": "Hot Sauce",
-        "heat": "Mild",
-        "seller": "theDino",
-        "stock": 2
+        "heat": 1,
+        "seller": "Gandalf",
+        "stock": 8
+        
+    },
+    {
+        "name": "Ass Blaster Hot Sauce with Outhouse Box",
+        "price": 14.95,
+        "description": "We call it our Ass Blaster hot sauce for a reason. So grab a bottle and put the blaze back in your saddle.",
+        "rating": 0,
+        "images": [
+            {
+                "public_id": "sauces/vcbaqcpuq3rteo5fjepc",
+                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1628622847/sauces/vcbaqcpuq3rteo5fjepc.jpg"
+            }
+        ],
+        "category": "Hot Sauce",
+        "heat": 4,
+        "seller": "Not Sure",
+        "stock": 3
+        
+    },
+    {
+        "name": "Da Bomb Hot Sauce -Beyond Insanity",
+        "price": 12.95,
+        "description": "The ultimate in hot. Da'Bomb Beyond Insanty is 'The Hot Sauce that Everyone Loves to Hate'. This sauce is way past insanity. Rated at 135,600 Scoville units.",
+        "rating": 0,
+        "images": [
+            {
+                "public_id": "sauces/vcbaqcpuq3rteo5fjepc",
+                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1628622847/sauces/vcbaqcpuq3rteo5fjepc.jpg"
+            }
+        ],
+        "category": "Hot Sauce",
+        "heat": 4,
+        "seller": "Not Sure",
+        "stock": 12
+        
+    },
+    {
+        "name": "Tessemae's Mild Buffalo Sauce",
+        "price": 5.95,
+        "description": "Did it get hot in here? We hope so. Tessemae's clean label Buffalo sauce brings just the right amount of heat for tossing your wings, and just about anything else. Vegan and Gluten Free!",
+        "rating": 0,
+        "images": [
+            {
+                "public_id": "sauces/f8da95a7-515d-49ff-aaeb-767b9298e9e2_1.a3f22970f0672f9d44a1253819aa73d2_ucvmuo",
+                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1623183950/sauces/f8da95a7-515d-49ff-aaeb-767b9298e9e2_1.a3f22970f0672f9d44a1253819aa73d2_ucvmuo.png"
+            }
+        ],
+        "category": "Other Sauce",
+        "heat": 1,
+        "seller": "Boba Fett",
+        "stock": 22
+        
+    },
+    {
+        "name": "Sweet Baby Rays Buffalo Wing Sauce",
+        "price": 3.95,
+        "description": "Did it get hot in here? We hope so. Tessemae's clean label Buffalo sauce brings just the right amount of heat for tossing your wings, and just about anything else. Vegan and Gluten Free!",
+        "rating": 0,
+        "images": [
+            {
+                "public_id": "sauces/61N6cEU8XiL._SL1078__bg4clq",
+                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1623183936/sauces/61N6cEU8XiL._SL1078__bg4clq.jpg"
+            }
+        ],
+        "category": "Other Sauce",
+        "heat": 2,
+        "seller": "Jarjar Binks",
+        "stock": 22
+        
+    },
+    {
+        "name": "Lil' Nitro Worlds Hottest Gummy Bear",
+        "price": 12.95,
+        "description": " Infused with 9 million scoville unit chili extract - do you dare this fiery gummy? Gummy bears pack giant taste into one delicious gummy.  900 times hotter than a jalapeno pepper!",
+        "rating": 0,
+        "images": [
+            {
+                "public_id": "sauces/61LU1veEujL._SL1200__qwqiuu",
+                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1623183847/sauces/61LU1veEujL._SL1200__qwqiuu.jpg"
+            }
+        ],
+        "category": "Snacks",
+        "heat": 4,
+        "seller": "Boba Fett",
+        "stock": 22
+        
+    },
+   
+    {
+        "name": "Waldo's Dry Rub",
+        "price": 9.95,
+        "description": " Our all purpose dry rub will have your family and friends wanting more! It’s the perfect combination of sweet and spicy and makes cooking a breeze! You can literally put this rub on ANYTHING & EVERYTHING it’s that good! Use it on meats, poultry, seafood, vegetables, tacos, popcorn, and the list goes on and on!!",
+        "rating": 0,
+        "images": [
+            {
+                "public_id": "sauces/dryrub2_tnwptr",
+                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1623183813/sauces/dryrub2_tnwptr.jpg"
+            }
+        ],
+        "category": "Seasonings",
+        "heat": 1,
+        "seller": "Jarjar Binks",
+        "stock": 22
+        
+    },
+    {
+        "name": "Cappy's Original Dry Rub",
+        "price": 5.95,
+        "description": " Cappy’s Dry Rub ‘Original’ variety is what would be considered our medium. It is a low sodium blend that contains just a small amount of sea salt. Our ‘Original’ is perfect for those who have a sensitivity to spicy foods but still love the flavor of just a hint of chili. This variety is the favorite of children of all ages. If your kids avoid veggies like the plague, make them fans by seasoning their vegetables with Cappy’s ‘Original’. Because this blend is truly all purpose, the ‘Original’ is also delicious on all poultry, fish and seafood and meats.",
+        "rating": 0,
+        "images": [
+            {
+                "public_id": "sauces/original-dry-rub-glamour_ugw9lx",
+                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1623183803/sauces/original-dry-rub-glamour_ugw9lx.jpg"
+            }
+        ],
+        "category": "Seasonings",
+        "heat": 2,
+        "seller": "Donny Kerabatsos ",
+        "stock": 14
+        
+    },
+    {
+        "name": "Lowry's Caribbean Jerk",
+        "price": 7.95,
+        "description": "Lawry's Caribbean Jerk With Papaya Marinade is here to solve your dinnertime dilemma. Featuring a bold blend of lime & papaya juices, and spices like allspice & chili pepper, this 15-minute marinade brings jerk-inspired flavors that add creativity to your meals.",
+        "rating": 0,
+        "images": [
+            {
+                "public_id": "sauces/00021500042093_a1n1_master_kdm33p",
+                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1623183760/sauces/00021500042093_a1n1_master_kdm33p.png"
+            }
+        ],
+        "category": "Marinade",
+        "heat": 2,
+        "seller": "Michael Corleone",
+        "stock": 14
+        
+    },
+    {
+        "name": "Hot Ones- The Last Dab XXX",
+        "price": 19.95,
+        "description": "CAUTION! The hottest sauce on Hot Ones cranks the spice level even higher with this special XXX-rated version of the Last Dab. Three distinct strains of Smokin' Ed Currie's most infamous chili-pepper, Pepper X, Chocolate Pepper X, and Peach Pepper X, combine to smoke out celebrity guests and fans alike. Add a dab to your favorite foods and live the Hot Ones tradition!",
+        "rating": 0,
+        "images": [
+            {
+                "public_id": "sauces/dabxxx1_1024x1024_hckqak",
+                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1623183614/sauces/dabxxx1_1024x1024_hckqak.jpg"
+            }
+        ],
+        "category": "Hot Sauce",
+        "heat": 4,
+        "seller": "Michael Corleone",
+        "stock": 14
+        
+    },
+    {
+        "name": "Cholula Original Hot Sauce",
+        "price": 7.95,
+        "description": "This is where it all started. Cholula Original Hot Sauce is created from a generations old recipe that features carefully-selected arbol and piquin peppers and a blend of signature spices. We love it on burgers and chicken but have heard it’s amazing on pizza. Uncap Real Flavor with Cholula Original.",
+        "rating": 0,
+        "images": [
+            {
+                "public_id": "sauces/cholula-hot-sauce_kdum9r",
+                "url": "https://res.cloudinary.com/gringo-caliente/image/upload/v1623183607/sauces/cholula-hot-sauce_kdum9r.jpg"
+            }
+        ],
+        "category": "Hot Sauce",
+        "heat": 2,
+        "seller": "AXL Rose",
+        "stock": 14
         
     }
     
