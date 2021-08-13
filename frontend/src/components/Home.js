@@ -11,14 +11,6 @@ import Pagination from 'react-js-pagination';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-const heatLevel = {
-    1: "mild",
-    2: "medium",
-    3: "hot",
-    4: "XXX Hot"
-
-};
-
 const {createSliderWithTooltip} = Slider;
 const Range = createSliderWithTooltip(Slider.Range)
 
@@ -36,7 +28,15 @@ const Home = ({match}) => {
         'BBQ Sauce',
         'Snacks',
         'Seasonings'
-    ]
+    ];
+
+    const heatLevel = {
+        1: "mild",
+        2: "medium",
+        3: "hot",
+        4: "XXX Hot"
+    
+    };
 
     const alert = useAlert();
     const dispatch = useDispatch();
