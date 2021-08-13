@@ -65,7 +65,7 @@ export const login =(email, password) => async (dispatch) => {
 export const register =(userData) => async (dispatch) => {
     try{
         console.log('action', userData)
-        console.log(userdata.name)
+        console.log(userData.name)
         dispatch({ type: REGISTER_USER_REQUEST})
         const config = {
             headers: {
@@ -88,7 +88,7 @@ export const register =(userData) => async (dispatch) => {
     }
 }
 
-//load logged in user
+//load  logged in user
 export const loadUser =() => async (dispatch) => {
     try{
         dispatch({ type: LOAD_USER_REQUEST})

@@ -2,6 +2,9 @@
   "name": "gringo-caliente",
   "version": "1.0.0",
   "description": "A hot sauce webstore",
+  "engines": {
+    "node": "12.18"
+  },
   "main": "server.js",  "scripts": {
     "start": "SET node backend/server.js",
     "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/server",
