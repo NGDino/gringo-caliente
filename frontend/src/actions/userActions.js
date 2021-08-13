@@ -69,7 +69,7 @@ export const register =(userData) => async (dispatch) => {
         dispatch({ type: REGISTER_USER_REQUEST})
         const config = {
             headers: {
-                'content-type': 'miltipart/form-data'
+                'Content-Yype': 'miltipart/form-data'
             }
         }
 

@@ -40,7 +40,7 @@ const Register = ({ history }) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        const formData = new FormData();
+        let formData = new FormData();
         formData.set('name', name);
         formData.set('email', email);
         formData.set('password', password);
