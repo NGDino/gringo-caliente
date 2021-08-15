@@ -72,8 +72,8 @@ const Home = ({match}) => {
             <div className="container container-fluid">
             {loading ? <Loader/> : (
                 <Fragment>
-                    <MetaData title={"Hot Sauce"}/>
-                    <h1 id="products_heading">Latest Products</h1>
+                    <MetaData title={"Gringo Caliente - Hot Sauce"}/>
+                    <h1 className="text-center" id="products_heading"><strong>Latest Products</strong></h1>
                     <section id="products" className="container mt-5">
                         <div className="row">
                         
