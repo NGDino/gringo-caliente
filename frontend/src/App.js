@@ -45,25 +45,36 @@ import ProductReviews from './components/admin/ProductReviews';
 import { Elements } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js'
 
+//trying this as a fix for new password error
+import ErrorBoundary from './components/route/ErrorBoundary'
+
 
 function App() {
 
   const [stripeApiKey, setStripeApiKey] = useState('')
 
+
+
   useEffect(()=> {
-    store.dispatch(loadUser())
+    async function getUser(){
+      await store.dispatch(loadUser())
+      console.log('app test', user , isAuthenticated)
+    }
 
     async function getStripeApiKey() {
       const {data} = await axios.get('/api/v1/stripeapi')
       setStripeApiKey(data.stripeApiKey)
     }
 
+    getUser()
     getStripeApiKey() 
 
   },[]);
 
   const {user, isAuthenticated, loading} = useSelector(state => state.auth)
-  
+
+
+  // getting error cannot read roles on 110 (adminreviews) trying to do new password WHY??
   return (
     <Router>
       <div className="App" style={{ backgroundImage: "url(/images/chilli-background.jpg)", backgroundSize: 'cover', minHeight:'100vh'}}>
@@ -78,9 +89,7 @@ function App() {
             <ProtectedRoute path = "/order/confirm" component = {ConfirmOrder} exact />
             <ProtectedRoute path = "/success" component = {OrderSuccess} />
             
-            <ProtectedRoute path = "/orders/me" component = {ListOrders} />
-            <ProtectedRoute path = "/order/me/:id" component = {OrderDetails}/>
-
+          
             {stripeApiKey && 
               <Elements stripe={loadStripe(stripeApiKey)}>
                 <ProtectedRoute path = "/payment" component = {Payment} />
@@ -89,13 +98,17 @@ function App() {
             
             <Route path = "/login" component = {Login}/>
             <Route path = "/register" component = {Register}/>
-            <Route path = "/password/forgot" component = {ForgotPassword}/>
-            <Route path = "/password/reset/:token" component = {NewPassword}/>
+            <Route path = "/password/forgot" component = {ForgotPassword} exact/>
+            <Route path = "/password/reset/:token" component = {NewPassword} exact/>
             <ProtectedRoute path = "/me" component = {Profile} exact/>
             <ProtectedRoute path = "/me/update" component = {UpdateProfile} exact/>
-            <ProtectedRoute path = "/password/update" component = {UpdatePassword} exact/>
+            <ProtectedRoute path = "/me/password/update" component = {UpdatePassword} exact/>
+
+            <ProtectedRoute path = "/orders/me" component = {ListOrders} exact />
+            <ProtectedRoute path = "/order/me/:id" component = {OrderDetails} exact/>
 
           </div>
+
           <ProtectedRoute path = "/dashboard" isAdmin={true} component = {Dashboard} exact/>
           <ProtectedRoute path = "/admin/products" isAdmin={true} component = {ProductList} exact/>
           <ProtectedRoute path = "/admin/product" isAdmin={true} component = {NewProduct} exact/>
@@ -104,6 +117,7 @@ function App() {
           <ProtectedRoute path = "/admin/order/:id" isAdmin={true} component = {ProcessOrder} exact/>
           <ProtectedRoute path = "/admin/users" isAdmin={true} component = {UserList} exact/>
           <ProtectedRoute path = "/admin/user/:id" isAdmin={true} component = {UpdateUser} exact/>
+
           <ProtectedRoute path = "/admin/reviews" isAdmin={true} component = {ProductReviews} exact/>
           
 

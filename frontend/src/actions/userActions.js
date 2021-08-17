@@ -90,23 +90,20 @@ export const register =(userData) => async (dispatch) => {
 export const loadUser =() => async (dispatch) => {
     try{
         dispatch({ type: LOAD_USER_REQUEST})
-        const config = {
-            headers: {
-                'content-type': 'miltipart/form-data'
-            }
-        }
 
         const {data} = await axios.get('api/v1/me')
-        
-        dispatch({ 
-            type: LOAD_USER_SUCCESS,
-            payload: data.user
-        })
+
+            dispatch({ 
+                type: LOAD_USER_SUCCESS,
+                payload: data.user,
+                
+            })
 
     } catch (error) {
+        console.log('error', error)
         dispatch({
             type: LOAD_USER_FAIL,
-            payload: error.response.data.message
+            payload: error.message
         })
     }
 }
@@ -211,6 +208,7 @@ export const forgotPassword = (email) => async (dispatch) => {
 //reset password action
 export const resetPassword = (token, passwords) => async (dispatch) => {
     try{
+        console.log('route hit')
         dispatch({
             type: RESET_PASSWORD_REQUEST
         })

@@ -53,7 +53,7 @@ const Home = ({match}) => {
         }
 
         dispatch(getProducts(keyword, currentPage, heat, category, rating)); 
-        console.log(products)
+        // console.log(products)
 
     }, [dispatch, alert, error, keyword, currentPage, heat, category, rating])
 
