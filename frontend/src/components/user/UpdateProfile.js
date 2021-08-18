@@ -12,7 +12,7 @@ const UpdateProfile = ({history}) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [avatar, setAvatar] = useState('')
-    const [avatarPreview, setAvatarPreview] = useState('/images/default_avatar.jpg')
+    const [avatarPreview, setAvatarPreview] = useState('/images/avatar.jpg')
 
     const alert = useAlert();
     const dispatch = useDispatch();
@@ -54,10 +54,18 @@ const UpdateProfile = ({history}) => {
         formData.set('email', email);
         formData.set('avatar', avatar);
 
+        console.log('avatar', avatar)
+        console.log('name', name)
+        console.log('email', email)
+
+        console.log('formData', formData);
+
         dispatch(updateProfile(formData))
     }
 
     const onChange = e => {
+
+        console.log('before', avatar)
 
             const reader = new FileReader()
 
@@ -65,11 +73,12 @@ const UpdateProfile = ({history}) => {
                 if(reader.readyState === 2){
                     setAvatarPreview(reader.result)
                     setAvatar(reader.result)
+
                 }
             }
 
             reader.readAsDataURL(e.target.files[0])
-        
+        console.log('after', avatar)
     }
     return (
         <Fragment>
@@ -99,7 +108,7 @@ const UpdateProfile = ({history}) => {
                                 className="form-control"
                                 name='email'
                                 value={email}
-                                onChange={(e=> setName(e.target.value))}
+                                onChange={(e=> setEmail(e.target.value))}
                             />
                         </div>
 

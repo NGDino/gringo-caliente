@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react'
 
 const ListReviews = ({ reviews }) => {
-    console.log(reviews)
     return (
         <Fragment>
-            <div className="reviews w-75">
+            <div className="reviews w-100 p-4 m-0" >
                 <h3>Other's Reviews:</h3>
                 <hr />
                 {reviews && reviews.map((review) =>

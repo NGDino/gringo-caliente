@@ -45,6 +45,10 @@ nav {
   background-color: #fff;
 
 }
+
+#reviews{
+  width: 100%;
+}
 #navbar-title {
   display: inline;
   color: rgba(255, 0, 0, 0.74);
