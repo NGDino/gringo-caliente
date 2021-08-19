@@ -74,7 +74,7 @@ const ProductReviews = () => {
                 },
                 {
                     label: 'Comment',
-                    field: 'coment',
+                    field: 'comment',
                     sort: 'asc'
                 },
                 {
