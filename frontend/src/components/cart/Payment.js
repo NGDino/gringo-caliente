@@ -1,11 +1,13 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAlert } from 'react-alert';
-import {createOrder, clearErrors} from '../../actions/orderActions';
+import { createOrder, clearErrors } from '../../actions/orderActions';
 
 import MetaData from '../layouts/MetaData';
 import CheckoutSteps from './CheckoutSteps';
+
+import Loader from '../layouts/Loader';
 
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
 import axios from 'axios';
@@ -28,22 +30,26 @@ const Payment = ({ history }) => {
     const elements = useElements();
     const dispatch = useDispatch();
 
+    const [loading, setLoading] = useState(true)
+
     const { user } = useSelector(state => state.auth);
     const { cartItems, shippingInfo } = useSelector(state => state.cart);
-    const {error} = useSelector(state => state.newOrder);
+    const { error } = useSelector(state => state.newOrder);
 
     useEffect(() => {
-    
-        if(error) {
+
+        if (error) {
             alert.error(error)
             dispatch(clearErrors())
         }
-    },[dispatch, alert, error])
+        checkForOrder()
+    }, [dispatch, alert, error])
 
     let order = {
         orderItems: cartItems,
         shippingInfo,
     }
+
 
     const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'));
     if (orderInfo) {
@@ -52,7 +58,7 @@ const Payment = ({ history }) => {
         order.taxPrice = orderInfo.taxPrice
         order.totalPrice = orderInfo.totalPrice
     }
-    
+
     const paymentData = {
         amount: Math.round(orderInfo.totalPrice * 100)
     }
@@ -64,7 +70,7 @@ const Payment = ({ history }) => {
 
         let res;
 
-        try{
+        try {
 
             const config = {
                 headers: {
@@ -77,7 +83,7 @@ const Payment = ({ history }) => {
 
             const clientSecret = res.data.client_secret
 
-            if(!stripe || !elements){
+            if (!stripe || !elements) {
                 return;
             }
 
@@ -91,15 +97,15 @@ const Payment = ({ history }) => {
                 }
             });
 
-            if(result.error){
+            if (result.error) {
                 alert.error(result.error.message)
                 document.querySelector('#pay_btn').disabled = false;
-            }else{ 
+            } else {
                 //if payment processed
-                if(result.paymentIntent.status === 'succeeded'){
+                if (result.paymentIntent.status === 'succeeded') {
                     // place order 
                     order.paymentInfo = {
-                        id: result.paymentIntent.id, 
+                        id: result.paymentIntent.id,
                         status: result.paymentIntent.status
                     }
 
@@ -109,68 +115,84 @@ const Payment = ({ history }) => {
                     localStorage.removeItem('cartItems')
 
                     history.push('/success')
-                }else{
+                } else {
                     alert.error('Payment not Processed')
                 }
             }
 
-        }catch(error){
+        } catch (error) {
             document.querySelector('#pay_btn').disabled = false;
             alert.error(error.response.data.message)
 
         }
     }
 
+    function checkForOrder() {
+        if(order.totalPrice){
+            setLoading(false)
+        }else{
+            alert.error('no order found')
+        }
+    }
+
+
     return (
         <Fragment>
             <MetaData title={'Payment Info'} />
-            <CheckoutSteps shipping confirmOrder payment />
-            <div className="row wrapper">
-                <div className="col-10 col-lg-5">
-                    <form className="shadow-lg" id="white-bg" onSubmit={submitHandler}>
-                        <h1 className="mb-4">Card Info</h1>
-                        <div className="form-group">
-                            <label htmlFor="card_num_field">Card Number</label>
-                            <CardNumberElement
-                                type="text"
-                                id="card_num_field"
-                                className="form-control"
-                                options={options}
-                            />
+
+            {loading ? <Loader /> :
+                <div>
+                    <CheckoutSteps shipping confirmOrder payment />
+                    <div className="row wrapper">
+                        <div className="col-10 col-lg-5">
+                            <form className="shadow-lg" id="white-bg" onSubmit={submitHandler}>
+                                <h1 className="mb-4">Card Info</h1>
+                                <div className="form-group">
+                                    <label htmlFor="card_num_field">Card Number</label>
+                                    <CardNumberElement
+                                        type="text"
+                                        id="card_num_field"
+                                        className="form-control"
+                                        options={options}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="card_exp_field">Card Expiry</label>
+                                    <CardExpiryElement
+                                        type="text"
+                                        id="card_exp_field"
+                                        className="form-control"
+                                        options={options}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="card_cvc_field">Card CVC</label>
+                                    <CardCvcElement
+                                        type="text"
+                                        id="card_cvc_field"
+                                        className="form-control"
+                                        options={options}
+                                    />
+                                </div>
+
+
+                                <button
+                                    id="pay_btn"
+                                    type="submit"
+                                    className="btn btn-block py-3"
+                                >
+                                    Pay {` - ${orderInfo && orderInfo.totalPrice}`}
+                                </button>
+
+                            </form>
                         </div>
-
-                        <div className="form-group">
-                            <label htmlFor="card_exp_field">Card Expiry</label>
-                            <CardExpiryElement
-                                type="text"
-                                id="card_exp_field"
-                                className="form-control"
-                                options={options}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="card_cvc_field">Card CVC</label>
-                            <CardCvcElement
-                                type="text"
-                                id="card_cvc_field"
-                                className="form-control"
-                                options={options}
-                            />
-                        </div>
-
-
-                        <button
-                            id="pay_btn"
-                            type="submit"
-                            className="btn btn-block py-3"
-                        >
-                            Pay {` - ${orderInfo && orderInfo.totalPrice}`}
-                        </button>
-
-                    </form>
+                    </div>
                 </div>
-            </div>
+            }
+
+
         </Fragment>
     )
 }

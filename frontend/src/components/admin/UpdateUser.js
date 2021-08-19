@@ -22,13 +22,10 @@ const UpdateUser = ({ match, history }) => {
     const { error, isUpdated } = useSelector(state => state.user);
     const { user } = useSelector(state => state.userDetails);
 
-    console.log('user', user)
-
     const userId = match.params.id;
 
     useEffect(() => {
 
-        console.log(user && user._id === userId);
 
         if (user && user._id !== userId) {
             dispatch(getUserDetails(userId))

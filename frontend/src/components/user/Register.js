@@ -12,6 +12,7 @@ const Register = ({ history }) => {
     const [user, setUser] = useState({
         name: '',
         email: '',
+        
         password: ''
     });
 

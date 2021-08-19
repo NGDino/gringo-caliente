@@ -20,6 +20,7 @@ const ConfirmOrder = ({ history }) => {
     const totalPrice = ((itemsPrice + shippingPrice + taxPrice).toFixed(2))
 
     const proceedToPayment = () => {
+        console.log('proceed clicked')
         const data = {
             itemsPrice: itemsPrice.toFixed(2),
             shippingPrice,

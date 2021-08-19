@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 
 const ListReviews = ({ reviews }) => {
-    console.log(reviews)
     return (
         <Fragment>
             <div className="reviews w-75">
