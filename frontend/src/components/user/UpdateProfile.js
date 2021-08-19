@@ -54,18 +54,11 @@ const UpdateProfile = ({history}) => {
         formData.set('email', email);
         formData.set('avatar', avatar);
 
-        console.log('avatar', avatar)
-        console.log('name', name)
-        console.log('email', email)
-
-        console.log('formData', formData);
-
         dispatch(updateProfile(formData))
     }
 
     const onChange = e => {
 
-        console.log('before', avatar)
 
             const reader = new FileReader()
 
@@ -78,7 +71,6 @@ const UpdateProfile = ({history}) => {
             }
 
             reader.readAsDataURL(e.target.files[0])
-        console.log('after', avatar)
     }
     return (
         <Fragment>

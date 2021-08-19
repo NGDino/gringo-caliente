@@ -25,11 +25,13 @@ const userSchema = new mongoose.Schema({
     avatar: {
         public_id: {
             type: String,
-            required: true
+            required: false,
+            default: 'avatar/zriarv3lm4ed3i5u0mjg'
         },
         url: {
             type: String,
-            required: true
+            required: false,
+            default: 'https://res.cloudinary.com/gringo-caliente/image/upload/v1629385695/avatar/zriarv3lm4ed3i5u0mjg.jpg'
         }
     },
     role: {

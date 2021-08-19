@@ -14,7 +14,7 @@ const Profile = () => {
             {loading ? <Loader /> : (
                 <Fragment>
                     <MetaData title={'My Profile'} />
-                    <div className="container container-fluid mt-4 " id="white-bg">
+                    <div className="container container-fluid my-4 " id="white-bg">
                         <h2 className="mt-5 ml-5">My Profile</h2>
                         <div className="row justify-content-around mt-5 user-info">
                             <div className="col-12 col-md-3">
@@ -43,7 +43,7 @@ const Profile = () => {
                                 )}
                                 
 
-                                <Link to="/password/update" className="btn btn-primary btn-block mt-3">
+                                <Link to="/password/update" className="btn btn-primary btn-block mt-3 mb-4">
                                     Change Password
                                 </Link>
                             </div>
